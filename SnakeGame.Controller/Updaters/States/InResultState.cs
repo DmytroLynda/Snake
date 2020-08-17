@@ -35,6 +35,7 @@ namespace SnakeGame.Controller.Updaters.States
             bool enterWasPress = lastPressedKey == KeyType.Enter;
             if (enterWasPress)
             {
+                gameLogic.NewGame();
                 return new InGameState();
             }
             else
