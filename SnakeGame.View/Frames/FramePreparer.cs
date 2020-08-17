@@ -15,7 +15,7 @@ namespace SnakeGame.View.Frames
 
         public FramePreparer()
         {
-            HeroColor = ConsoleColor.Blue;
+            HeroColor = ConsoleColor.Red;
             HeroSymbol = '*';
 
             FoodColor = ConsoleColor.Yellow;
