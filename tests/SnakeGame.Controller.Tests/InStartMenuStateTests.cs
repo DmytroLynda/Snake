@@ -25,6 +25,8 @@ namespace SnakeGame.Controller.Tests
             fakeRenderer = Mock.Of<IRenderer>();
         }
 
+        #region Update tests
+
         [Test]
         [TestCaseSource(nameof(UpdateNullCases))]
         public void Update_NullParameters_ThrowsArgumentNull(ILogic logic, IRenderer renderer)
@@ -82,5 +84,7 @@ namespace SnakeGame.Controller.Tests
 
             Mock.Get(fakeLogic).Verify(logic => logic.NewGame(), Times.Once);
         }
+
+        #endregion
     }
 }
