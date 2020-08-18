@@ -1,6 +1,5 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using SnakeGame.View.ExternalInterfaces;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace SnakeGame.View
 
         public Map(IMapConfiguration mapConfiguration, ConsoleColor borderColor, char borderSymbol)
         {
-            MapConfiguration = mapConfiguration;
+            MapConfiguration = mapConfiguration ?? throw new ArgumentNullException(nameof(mapConfiguration));
 
             BorderColor = borderColor;
             BorderSymbol = borderSymbol;
@@ -37,7 +36,7 @@ namespace SnakeGame.View
         {
             #region Check for null
 
-            NullHandlingHelper.ExternalCheckForNull<IEnumerable<IFrameObject>>(clearedFrame);
+            if (clearedFrame is null) throw new ArgumentNullException(nameof(clearedFrame));
 
             #endregion
 
@@ -108,7 +107,7 @@ namespace SnakeGame.View
         {
             #region Check for null
 
-            NullHandlingHelper.ExternalCheckForNull<string>(line);
+            if (line is null) throw new ArgumentNullException(nameof(line));
 
             #endregion
 
@@ -123,7 +122,7 @@ namespace SnakeGame.View
         {
             #region Check for null
 
-            NullHandlingHelper.ExternalCheckForNull<string[]>(text);
+            if (text is null) throw new ArgumentNullException(nameof(text));
 
             #endregion
 
@@ -154,7 +153,11 @@ namespace SnakeGame.View
 
         private int CalculateFirstLine(string[] lines)
         {
+            #region Check for null
+
             Debug.Assert(lines != null, nameof(lines) + " != null");
+
+            #endregion
 
             int centerLineNumber = (MapConfiguration.Height + BorderWidth * 2) / 2 + TopIndent;
             int firstLineMustBeOn = centerLineNumber - (lines.Length / 2);
@@ -165,7 +168,7 @@ namespace SnakeGame.View
         {
             #region Check value and for null
 
-            NullHandlingHelper.InternalCheckForNull<string>(line);
+            Debug.Assert(line != null, nameof(line) + " != null");
             Debug.Assert(numberOfLine >= 0, nameof(numberOfLine));
 
             #endregion

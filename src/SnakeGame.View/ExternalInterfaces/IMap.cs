@@ -1,7 +1,5 @@
-﻿using SnakeGame.Controller.ExternalInterfaces;
-using SnakeGame.Controller.Resources;
+﻿using SnakeGame.Controller.Resources;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using SnakeGame.View.Frames;
 

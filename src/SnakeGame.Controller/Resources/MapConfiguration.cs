@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SnakeGame.Controller.ExternalInterfaces;
+﻿using SnakeGame.Controller.ExternalInterfaces;
 
 namespace SnakeGame.Controller.Resources
 {

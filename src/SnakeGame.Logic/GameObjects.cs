@@ -1,9 +1,7 @@
-﻿using SnakeGame.Controller.ExternalInterfaces;
+﻿using System;
+using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("SnakeGame.Logic.Tests")]
@@ -18,13 +16,8 @@ namespace SnakeGame.Logic
 
         public GameObjects(IEnumerable<PositivePoint> hero, IEnumerable<PositivePoint> food)
         {
-            #region Checks for null
-            NullHandlingHelper.ExternalCheckForNull<IEnumerable<Point>>(food);
-            NullHandlingHelper.ExternalCheckForNull<IEnumerable<Point>>(hero);
-            #endregion
-
-            FoodLocation = food;
-            HeroLocation = hero;
+            FoodLocation = food ?? throw new ArgumentNullException(nameof(food));
+            HeroLocation = hero ?? throw new ArgumentNullException(nameof(hero));
         }
     }
 }

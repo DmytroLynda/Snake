@@ -1,6 +1,5 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using SnakeGame.View.ExternalInterfaces;
 using SnakeGame.View.Frames;
 using System;
@@ -17,13 +16,8 @@ namespace SnakeGame.View
 
         public Renderer(IMap map, IFramePreparer preparer)
         {
-            #region Check for null
-            NullHandlingHelper.ExternalCheckForNull<IMap>(map);
-            NullHandlingHelper.ExternalCheckForNull<IFramePreparer>(preparer);
-            #endregion
-
-            Map = map;
-            Preparer = preparer;
+            Map = map ?? throw new ArgumentNullException(nameof(map));
+            Preparer = preparer ?? throw new ArgumentNullException(nameof(preparer));
 
             LastFrame = new List<IFrameObject>();
 

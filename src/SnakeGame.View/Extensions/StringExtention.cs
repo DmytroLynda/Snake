@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SnakeGame.View.Extensions
+﻿namespace SnakeGame.View.Extensions
 {
     internal static class StringExtension
     {
