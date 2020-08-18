@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SnakeGame.Controller\SnakeGame.Controller.csproj" />
+    <ProjectReference Include="..\..\src\SnakeGame.Controller\SnakeGame.Controller.csproj" />
+    <ProjectReference Include="..\..\src\SnakeGame.View\SnakeGame.View.csproj" />
   </ItemGroup>
 
 </Project>

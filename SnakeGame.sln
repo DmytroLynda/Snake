@@ -3,26 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame", "SnakeGame\SnakeGame.csproj", "{9E833873-F1FB-4A7E-8643-190CF8EA8D5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame", "src\SnakeGame\SnakeGame.csproj", "{9E833873-F1FB-4A7E-8643-190CF8EA8D5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Controller", "SnakeGame.Controller\SnakeGame.Controller.csproj", "{7D2B4760-615A-45EA-ADF3-C5677EF7BD1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Controller", "src\SnakeGame.Controller\SnakeGame.Controller.csproj", "{7D2B4760-615A-45EA-ADF3-C5677EF7BD1E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Input", "SnakeGame.ConsoleInputListener\SnakeGame.Input.csproj", "{AA482A4F-3DE8-420E-9607-A8CC4F5B497C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Input", "src\SnakeGame.ConsoleInputListener\SnakeGame.Input.csproj", "{AA482A4F-3DE8-420E-9607-A8CC4F5B497C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7D2B4760-615A-45EA-ADF3-C5677EF7BD1E} = {7D2B4760-615A-45EA-ADF3-C5677EF7BD1E}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Logic", "SnakeGame.Logic\SnakeGame.Logic.csproj", "{FBED94FF-F4B1-47DB-A66F-C3191043F4B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Logic", "src\SnakeGame.Logic\SnakeGame.Logic.csproj", "{FBED94FF-F4B1-47DB-A66F-C3191043F4B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Helpers", "SnakeGame.Helpers\SnakeGame.Helpers.csproj", "{97DC3B5A-6C40-4272-98F2-7A668837024F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Helpers", "src\SnakeGame.Helpers\SnakeGame.Helpers.csproj", "{97DC3B5A-6C40-4272-98F2-7A668837024F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.View", "SnakeGame.View\SnakeGame.View.csproj", "{E1FBB241-BB24-4D23-A1E5-BC18B92C10D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.View", "src\SnakeGame.View\SnakeGame.View.csproj", "{E1FBB241-BB24-4D23-A1E5-BC18B92C10D4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Logic.Tests", "SnakeGame.Logic.Tests\SnakeGame.Logic.Tests.csproj", "{20C717AB-F593-4F6E-9F90-706FC8E36837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Logic.Tests", "tests\SnakeGame.Logic.Tests\SnakeGame.Logic.Tests.csproj", "{20C717AB-F593-4F6E-9F90-706FC8E36837}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Controller.Tests", "SnakeGame.Controller.Tests\SnakeGame.Controller.Tests.csproj", "{115CA700-7322-41CA-ACE1-29E22C876DF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.Controller.Tests", "tests\SnakeGame.Controller.Tests\SnakeGame.Controller.Tests.csproj", "{115CA700-7322-41CA-ACE1-29E22C876DF2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.View.Tests", "SnakeGame.View.Tests\SnakeGame.View.Tests.csproj", "{12F8AC10-E77B-437F-BBDF-C60046ECEBE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.View.Tests", "tests\SnakeGame.View.Tests\SnakeGame.View.Tests.csproj", "{12F8AC10-E77B-437F-BBDF-C60046ECEBE5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F792BD5-5973-4215-A920-8BC6E0B8DEFE}"
 EndProject
