@@ -10,7 +10,7 @@ using System.Linq;
 namespace SnakeGame.Logic.Tests
 {
     [TestFixture]
-    public class FruitCreateTest
+    internal class FruitCreateTest
     {
         private const int MapWidth = 5;
         private const int MapHeight = 5;

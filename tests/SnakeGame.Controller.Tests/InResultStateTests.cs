@@ -9,7 +9,7 @@ using SnakeGame.Controller.Updaters.States;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    class InResultStateTests
+    internal class InResultStateTests
     {
         private ILogic fakeLogic;
         private IRenderer fakeRenderer;

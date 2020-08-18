@@ -13,7 +13,7 @@ using SnakeGame.Logic.ExternalInterfaces;
 namespace SnakeGame.Logic.Tests
 {
     [TestFixture]
-    public class SnakeCreatorTest
+    internal class SnakeCreatorTest
     {
         #region Constructor tests
 

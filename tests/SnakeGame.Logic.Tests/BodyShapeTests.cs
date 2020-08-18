@@ -6,7 +6,7 @@ using SnakeGame.Controller.Resources;
 namespace SnakeGame.Logic.Tests
 {
     [TestFixture]
-    public class BodyShapeTests
+    internal class BodyShapeTests
     {
         private readonly int height = 4;
         private readonly int width = 4;

@@ -10,7 +10,7 @@ using SnakeGame.Controller.Updaters.States;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    class InStartMenuStateTests
+    internal class InStartMenuStateTests
     {
         private ILogic fakeLogic;
         private IRenderer fakeRenderer;

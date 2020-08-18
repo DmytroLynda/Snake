@@ -7,7 +7,7 @@ using SnakeGame.Controller.Resources;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    public class PositivePointTests
+    internal class PositivePointTests
     {
         #region Constructor tests
 

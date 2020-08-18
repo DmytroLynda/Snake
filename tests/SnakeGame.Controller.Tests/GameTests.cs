@@ -11,7 +11,7 @@ using Range = Moq.Range;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    public class GameTests
+    internal class GameTests
     {
         #region Constructor tests
 

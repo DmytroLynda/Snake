@@ -10,7 +10,7 @@ using SnakeGame.Logic.Exceptions;
 namespace SnakeGame.Logic.Tests
 {
     [TestFixture]
-    public class GameLogicTests
+    internal class GameLogicTests
     {
         private IFruitCreator fakeFruitCreator;
         private IFruit fakeFruit;

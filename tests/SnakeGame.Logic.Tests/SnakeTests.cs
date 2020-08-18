@@ -10,7 +10,7 @@ using System.Linq;
 namespace SnakeGame.Logic.Tests
 {
     [TestFixture]
-    public class SnakeTests
+    internal class SnakeTests
     {
         private IMapConfiguration fakeConfiguration;
         private IMapCalculator fakeCalculator;

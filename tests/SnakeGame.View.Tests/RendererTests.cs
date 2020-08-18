@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace SnakeGame.View.Tests
 {
-    public class RendererTests
+    internal class RendererTests
     {
         private Renderer renderer;
         private IMap fakeMap;
