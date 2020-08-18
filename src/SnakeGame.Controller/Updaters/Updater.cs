@@ -4,12 +4,11 @@ using SnakeGame.Controller.Resources;
 using SnakeGame.Controller.Updaters.States;
 using SnakeGame.Helpers;
 
-[assembly: InternalsVisibleTo("SnakeGame")]
 [assembly: InternalsVisibleTo("SnakeGame.Controller.Tests")]
 
 namespace SnakeGame.Controller.Updaters
 {
-    internal class Updater : IUpdater
+    public class Updater : IUpdater
     {
         private ILogic GameLogic { get; }
         private IRenderer ViewRenderer { get; }

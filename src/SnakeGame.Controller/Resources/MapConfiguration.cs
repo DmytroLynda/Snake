@@ -4,12 +4,12 @@ using SnakeGame.Controller.ExternalInterfaces;
 
 namespace SnakeGame.Controller.Resources
 {
-    internal class MapParameters : IMapConfiguration
+    public class MapConfiguration : IMapConfiguration
     {
         public int Height { get; }
         public int Width { get; }
 
-        public MapParameters(int height, int width)
+        public MapConfiguration(int height, int width)
         {
             Height = height;
             Width = width;

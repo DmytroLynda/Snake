@@ -21,7 +21,7 @@ namespace SnakeGame
             Console.CursorVisible = false;
             Trace.Listeners.Add(new DefaultTraceListener());
 
-            IMapConfiguration mapConfig = new MapParameters(11, 20);
+            IMapConfiguration mapConfig = new MapConfiguration(11, 20);
 
             ILogic logic = new GameLogic(new FruitCreator(mapConfig), new SnakeCreator(mapConfig, new MapCalculator()));
 
