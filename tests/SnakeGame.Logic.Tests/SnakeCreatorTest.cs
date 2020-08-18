@@ -15,6 +15,8 @@ namespace SnakeGame.Logic.Tests
     [TestFixture]
     public class SnakeCreatorTest
     {
+        #region Constructor tests
+
         [Test]
         [TestCaseSource(nameof(ConstructorNullCases))]
         public void SnakeCreator_NullParameters_ThrowsArgumentNull(IMapConfiguration configuration, IMapCalculator calculator)
@@ -32,6 +34,10 @@ namespace SnakeGame.Logic.Tests
                 yield return new TestCaseData(Mock.Of<IMapConfiguration>(), null);
             }
         }
+
+        #endregion
+
+        #region Create tests
 
         [Test]
         [TestCase(6,6,4)]
@@ -53,5 +59,7 @@ namespace SnakeGame.Logic.Tests
 
             Assert.That(actualLength, Is.EqualTo(expectedLength));
         }
+
+        #endregion
     }
 }
