@@ -13,6 +13,9 @@ namespace SnakeGame.Logic.Tests
 
         [Test]
         [TestCaseSource(nameof(CorrectShapeCases))]
+
+        #region Constructor tests
+
         public void BodyShape_CreateWithCorrectShape_CreatesObject(IEnumerable<PositivePoint> shape)
         {
             void Act() => new BodyShape(shape, height, width);
@@ -93,6 +96,8 @@ namespace SnakeGame.Logic.Tests
             Assert.Throws<ArgumentException>(Act);
         }
 
+
+
         private static IEnumerable<TestCaseData> IncorrectShapeCases()
         {
             yield return new TestCaseData(new List<PositivePoint>
@@ -121,5 +126,7 @@ namespace SnakeGame.Logic.Tests
 
             Assert.Throws<ArgumentException>(Act);
         }
+
+        #endregion
     }
 }
