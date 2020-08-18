@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace SnakeGame.View
 {
-    public class Renderer : IRenderer
+    public class ConsoleRenderer : IRenderer
     {
         private IMap Map { get; }
         private IFramePreparer Preparer { get; }
 
         private IEnumerable<IFrameObject> LastFrame { get; set; }
 
-        public Renderer(IMap map, IFramePreparer preparer)
+        public ConsoleRenderer(IMap map, IFramePreparer preparer)
         {
             Map = map ?? throw new ArgumentNullException(nameof(map));
             Preparer = preparer ?? throw new ArgumentNullException(nameof(preparer));

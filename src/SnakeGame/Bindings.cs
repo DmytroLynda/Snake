@@ -33,7 +33,7 @@ namespace SnakeGame
                 .WithConstructorArgument("borderColor", ConsoleColor.White)
                 .WithConstructorArgument("borderSymbol", '#');
             Bind<IFramePreparer>().To<FramePreparer>();
-            Bind<IRenderer>().To<Renderer>();
+            Bind<IRenderer>().To<ConsoleRenderer>();
 
             Bind<IUserInputListener>().To<ConsoleInputListener>();
 

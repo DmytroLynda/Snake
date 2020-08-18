@@ -12,7 +12,7 @@ namespace SnakeGame.View.Tests
 {
     internal class RendererTests
     {
-        private Renderer renderer;
+        private ConsoleRenderer renderer;
         private IMap fakeMap;
         private IFramePreparer fakePreparer;
 
@@ -22,7 +22,7 @@ namespace SnakeGame.View.Tests
             fakeMap = Mock.Of<IMap>();
             fakePreparer = Mock.Of<IFramePreparer>();
 
-            renderer = new Renderer(fakeMap, fakePreparer);
+            renderer = new ConsoleRenderer(fakeMap, fakePreparer);
         }
 
         #region Constructor tests
@@ -31,7 +31,7 @@ namespace SnakeGame.View.Tests
         [TestCaseSource(nameof(ConstructorNullCases))]
         public void Renderer_NullParameters_ThrowsArgumentNull(IMap map, IFramePreparer preparer)
         {
-            void Act() => new Renderer(map, preparer);
+            void Act() => new ConsoleRenderer(map, preparer);
 
             Assert.Throws<ArgumentNullException>(Act);
         }
@@ -50,7 +50,7 @@ namespace SnakeGame.View.Tests
         {
             Mock.Get(fakeMap).Invocations.Clear();
 
-            var unused = new Renderer(fakeMap, fakePreparer);
+            var unused = new ConsoleRenderer(fakeMap, fakePreparer);
 
             Mock.Get(fakeMap).Verify(map => map.DrawMap(), Times.Once);
         }
