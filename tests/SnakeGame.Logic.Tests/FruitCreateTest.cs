@@ -10,7 +10,7 @@ using System.Linq;
 namespace SnakeGame.Logic.Tests
 {
     [TestFixture]
-    public class FruitCreateTest
+    internal class FruitCreateTest
     {
         private const int MapWidth = 5;
         private const int MapHeight = 5;
@@ -26,6 +26,8 @@ namespace SnakeGame.Logic.Tests
             creator = new FruitCreator(configuration);
         }
 
+        #region Constructor tests
+
         [Test]
         public void FruitCreator_NullMapConfiguration_ThrowsArgumentNullException()
         {
@@ -35,6 +37,10 @@ namespace SnakeGame.Logic.Tests
 
             Assert.Throws<ArgumentNullException>(Act);
         }
+
+        #endregion
+
+        #region Create tests
 
         [Test]
         [Repeat(100)]
@@ -59,5 +65,7 @@ namespace SnakeGame.Logic.Tests
 
             CollectionAssert.DoesNotContain(actualFruitLocation, except);
         }
+
+        #endregion
     }
 }

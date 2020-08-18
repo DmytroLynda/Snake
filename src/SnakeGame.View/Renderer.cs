@@ -1,9 +1,9 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using SnakeGame.View.ExternalInterfaces;
-using System.Collections.Generic;
 using SnakeGame.View.Frames;
+using System;
+using System.Collections.Generic;
 
 namespace SnakeGame.View
 {
@@ -16,27 +16,22 @@ namespace SnakeGame.View
 
         public Renderer(IMap map, IFramePreparer preparer)
         {
-            #region Check for null
-            NullHandlingHelper.ExternalCheckForNull<IMap>(map);
-            NullHandlingHelper.ExternalCheckForNull<IFramePreparer>(preparer);
-            #endregion
+            Map = map ?? throw new ArgumentNullException(nameof(map));
+            Preparer = preparer ?? throw new ArgumentNullException(nameof(preparer));
 
-            Map = map;
-            Preparer = preparer;
-            
             LastFrame = new List<IFrameObject>();
 
             map.DrawMap();
         }
 
-        public void DrawNewFrame(IGameObjects gameObjects, string title, string centerText)
+        public void DrawNewFrame(IGameObjects gameObjects, string title, string[] centerText)
         {
-             Map.Clear(LastFrame);
+            Map.Clear(LastFrame);
 
             title ??= string.Empty;
             Map.DrawLineOverMap(title);
 
-            centerText ??= string.Empty;
+            centerText ??= Array.Empty<string>();
             Map.DrawText(centerText);
 
             if (gameObjects != null)

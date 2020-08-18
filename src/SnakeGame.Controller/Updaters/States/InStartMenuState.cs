@@ -1,7 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 
 [assembly: InternalsVisibleTo("SnakeGame.Controller.Tests")]
 
@@ -14,15 +14,20 @@ namespace SnakeGame.Controller.Updaters.States
         public IState Update(ILogic gameLogic, IRenderer viewRenderer, KeyType lastPressedKey)
         {
             #region Checks for null
-            NullHandlingHelper.ExternalCheckForNull<ILogic>(gameLogic);
-            NullHandlingHelper.ExternalCheckForNull<IRenderer>(viewRenderer);
+
+            if (gameLogic is null) throw new ArgumentNullException(nameof(gameLogic));
+            if (viewRenderer is null) throw new ArgumentNullException(nameof(viewRenderer));
+
             #endregion
 
             if (!startInfoWasRender)
             {
-                string greeting = "WELCOME TO\nTHE SNAKE GAME";
-                string helpMessage = "PRESS ENTER";
-                string message = $"{greeting}\n{helpMessage}";
+                string[] message =
+                {
+                    "WELCOME TO",
+                    "THE SNAKE GAME",
+                    "PRESS ENTER"
+                };
 
                 viewRenderer.DrawNewFrame(new EmptyGameObjects(), string.Empty, message);
 

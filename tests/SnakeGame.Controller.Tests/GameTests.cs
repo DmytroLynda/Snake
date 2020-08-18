@@ -11,8 +11,10 @@ using Range = Moq.Range;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    public class GameTests
+    internal class GameTests
     {
+        #region Constructor tests
+
         [Test]
         public void Game_NullUpdater_ThrowsArgumentNull()
         {
@@ -22,6 +24,10 @@ namespace SnakeGame.Controller.Tests
 
             Assert.Throws<ArgumentNullException>(Act);
         }
+
+        #endregion
+
+        #region Start tests
 
         [Test]
         public void Start_UpdatesGameEvery_50_Milliseconds()
@@ -38,5 +44,7 @@ namespace SnakeGame.Controller.Tests
                 updater => updater.Update(), 
                 Times.Between(executeTimes - 1, executeTimes + 1, Range.Inclusive));
         }
+
+        #endregion
     }
 }

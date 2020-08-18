@@ -1,7 +1,5 @@
-﻿using SnakeGame.Controller.ExternalInterfaces;
-using SnakeGame.Controller.Resources;
+﻿using SnakeGame.Controller.Resources;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using SnakeGame.View.Frames;
 
@@ -13,6 +11,6 @@ namespace SnakeGame.View.ExternalInterfaces
         void DrawMap();
         void DrawPointOn(PositivePoint point, char presentationSymbol, ConsoleColor color);
         void DrawLineOverMap(string line);
-        void DrawText(string text);
+        void DrawText(string[] text);
     }
 }

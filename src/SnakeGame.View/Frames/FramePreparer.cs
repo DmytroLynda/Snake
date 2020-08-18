@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using SnakeGame.Controller.ExternalInterfaces;
-using SnakeGame.Helpers;
 
 namespace SnakeGame.View.Frames
 {
@@ -25,7 +24,9 @@ namespace SnakeGame.View.Frames
         public IEnumerable<IFrameObject> PrepareFrame(IGameObjects gameObjects)
         {
             #region Check for null
-            NullHandlingHelper.InternalCheckForNull<IGameObjects>(gameObjects);
+
+            if (gameObjects is null) throw new ArgumentNullException(nameof(gameObjects));
+
             #endregion
 
             yield return new FrameObject(gameObjects.HeroLocation, HeroSymbol, HeroColor);

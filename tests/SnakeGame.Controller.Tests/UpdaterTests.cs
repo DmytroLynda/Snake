@@ -29,6 +29,8 @@ namespace SnakeGame.Controller.Tests
             updater = new Updater(fakeLogic, fakeRenderer, fakeListener, fakeState);
         }
 
+        #region Constructor tests
+
         [Test]
         [TestCaseSource(nameof(ConstructorNullCases))]
         public void Updater_NullParameters_ThrowsArgumentNullException(ILogic logic, IRenderer renderer, IUserInputListener listener, GameState state)
@@ -98,11 +100,15 @@ namespace SnakeGame.Controller.Tests
             updater.Update();
 
             Mock.Get(fakeState).Verify(state => state.Update(
-                It.IsAny<ILogic>(),
-                It.IsAny<IRenderer>(),
-                KeyType.Unknown),
+                    It.IsAny<ILogic>(),
+                    It.IsAny<IRenderer>(),
+                    KeyType.Unknown),
                 Times.Once);
         }
+
+        #endregion
+
+        #region Update tests
 
         [Test]
         public void Update_UseSpecifiedLogic()
@@ -119,6 +125,10 @@ namespace SnakeGame.Controller.Tests
 
             Mock.Get(fakeState).Verify(state => state.Update(It.IsAny<ILogic>(), fakeRenderer, It.IsAny<KeyType>()), Times.Once);
         }
+
+        #endregion
+
+        #region KeyWasPressed - tests behaviour after invoke the event.
 
         [Test]
         [TestCaseSource(nameof(EventArgsNullCases))]
@@ -153,10 +163,12 @@ namespace SnakeGame.Controller.Tests
             updater.Update(); //Force updater use actual KeyType for update state.
             
             Mock.Get(fakeState).Verify(state => state.Update(
-                It.IsAny<ILogic>(),
-                It.IsAny<IRenderer>(),
-                key),
+                    It.IsAny<ILogic>(),
+                    It.IsAny<IRenderer>(),
+                    key),
                 Times.Once);
         }
+
+        #endregion
     }
 }

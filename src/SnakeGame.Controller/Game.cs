@@ -1,5 +1,4 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
-using SnakeGame.Helpers;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -13,17 +12,15 @@ namespace SnakeGame.Controller
 
         public Game(IUpdater updater)
         {
-            #region Check for null
-            NullHandlingHelper.ExternalCheckForNull<IUpdater>(updater);
-            #endregion
-
-            Updater = updater;
+            Updater = updater ?? throw new ArgumentNullException(nameof(updater));
         }
 
         public void Start(int delayBetweenUpdates)
         {
             if (delayBetweenUpdates < 0)
+            {
                 delayBetweenUpdates = 0;
+            }
 
             Stopwatch sleepTimer = new Stopwatch();
 
@@ -44,9 +41,11 @@ namespace SnakeGame.Controller
         private static void ExecuteWithSpecifiedDelay(Action act, int delay, Stopwatch sleepTimer)
         {
             #region Check value and for Null
-            NullHandlingHelper.InternalCheckForNull<Action>(act);
-            NullHandlingHelper.InternalCheckForNull<Stopwatch>(sleepTimer);
+
+            Debug.Assert(act != null, nameof(act) + " != null");
+            Debug.Assert(sleepTimer != null, nameof(sleepTimer) + " != null");
             Debug.Assert(delay > 0, $"{nameof(delay)} must be > 0.");
+
             #endregion
 
             sleepTimer.Start();
@@ -65,9 +64,11 @@ namespace SnakeGame.Controller
         private static int CalculateRemainingDelay(int delay, Stopwatch sleepTimer, long startProcessing)
         {
             #region Check forn null
-            NullHandlingHelper.InternalCheckForNull<Stopwatch>(sleepTimer);
+
+            Debug.Assert(sleepTimer != null, nameof(sleepTimer) + " != null");
             Debug.Assert(startProcessing <= sleepTimer.ElapsedMilliseconds, $"The start processing time must got after invoking the act.");
             Debug.Assert(delay > 0, $"{nameof(delay)} must be > 0.");
+
             #endregion
 
             long processingTime = sleepTimer.ElapsedMilliseconds - startProcessing;

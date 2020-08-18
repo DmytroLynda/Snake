@@ -9,7 +9,7 @@ using SnakeGame.Controller.Updaters.States;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    class InResultStateTests
+    internal class InResultStateTests
     {
         private ILogic fakeLogic;
         private IRenderer fakeRenderer;
@@ -22,6 +22,8 @@ namespace SnakeGame.Controller.Tests
             fakeRenderer = Mock.Of<IRenderer>();
             state = new InResultState();
         }
+
+        #region Update tests
 
         [Test]
         [TestCaseSource(nameof(UpdateNullCases))]
@@ -49,7 +51,12 @@ namespace SnakeGame.Controller.Tests
 
             state.Update(fakeLogic, fakeRenderer, default);
 
-            Mock.Get(fakeLogic).VerifyGet(logic => logic.Score, Times.Once);
+            Mock.Get(fakeRenderer).Verify(renderer => 
+                renderer.DrawNewFrame(
+                    It.IsAny<IGameObjects>(), 
+                    expectedScore.ToString(), 
+                    It.IsAny<string[]>()),
+                Times.Once);
         }
 
         [Test]
@@ -76,5 +83,7 @@ namespace SnakeGame.Controller.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        #endregion
     }
 }

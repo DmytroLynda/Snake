@@ -10,7 +10,7 @@ using SnakeGame.Controller.Updaters.States;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    class InStartMenuStateTests
+    internal class InStartMenuStateTests
     {
         private ILogic fakeLogic;
         private IRenderer fakeRenderer;
@@ -24,6 +24,8 @@ namespace SnakeGame.Controller.Tests
             fakeLogic = Mock.Of<ILogic>();
             fakeRenderer = Mock.Of<IRenderer>();
         }
+
+        #region Update tests
 
         [Test]
         [TestCaseSource(nameof(UpdateNullCases))]
@@ -82,5 +84,7 @@ namespace SnakeGame.Controller.Tests
 
             Mock.Get(fakeLogic).Verify(logic => logic.NewGame(), Times.Once);
         }
+
+        #endregion
     }
 }

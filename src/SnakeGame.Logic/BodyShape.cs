@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using SnakeGame.Logic.ExternalInterfaces;
 
 namespace SnakeGame.Logic
@@ -17,9 +16,11 @@ namespace SnakeGame.Logic
         public BodyShape(IEnumerable<PositivePoint> shape, int height, int width)
         {
             #region Check values
+
             if (height < 0) throw new ArgumentOutOfRangeException(nameof(height));
             if (width < 0) throw new ArgumentOutOfRangeException(nameof(width));
-            NullHandlingHelper.ExternalCheckForNull<IEnumerable<PositivePoint>>(shape);
+            if (shape is null) throw new ArgumentNullException(nameof(shape));
+
             #endregion
 
             this.shape = shape.ToList();
@@ -36,9 +37,10 @@ namespace SnakeGame.Logic
             {
                 #region Check for null
 
-                NullHandlingHelper.ExternalCheckForNull<IEnumerable<PositivePoint>>(value);
+                if (shape is null) throw new ArgumentNullException(nameof(value));
 
                 #endregion
+
                 CheckForCorrect(value);
 
                 shape = value.ToList();
@@ -73,7 +75,7 @@ namespace SnakeGame.Logic
         {
             #region Check for null
 
-            NullHandlingHelper.InternalCheckForNull<IEnumerable<PositivePoint>>(shape);
+            Debug.Assert(shape != null, nameof(this.shape) + " != null");
 
             #endregion
 

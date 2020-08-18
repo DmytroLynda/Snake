@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SnakeGame.Controller\SnakeGame.Controller.csproj" />
-    <ProjectReference Include="..\SnakeGame.Helpers\SnakeGame.Helpers.csproj" />
   </ItemGroup>
 
 </Project>

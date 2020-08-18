@@ -9,7 +9,7 @@ using SnakeGame.Controller.Updaters.States;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    class InGameStateTests
+    internal class InGameStateTests
     {
         private ILogic fakeLogic;
         private IRenderer fakeRenderer;
@@ -22,6 +22,8 @@ namespace SnakeGame.Controller.Tests
             fakeRenderer = Mock.Of<IRenderer>();
             state = new InGameState();
         }
+
+        #region Constructor tests
 
         [Test]
         [TestCaseSource(nameof(UpdateNullCases))]
@@ -42,6 +44,10 @@ namespace SnakeGame.Controller.Tests
                 yield return new TestCaseData(Mock.Of<ILogic>(), null);
             }
         }
+
+        #endregion
+
+        #region Update tests
 
         [Test]
         public void Update_GameIsNotOver_ReturnsCurrentState()
@@ -94,7 +100,7 @@ namespace SnakeGame.Controller.Tests
                 renderer.DrawNewFrame(
                     expectedGameObjects,
                     It.IsAny<string>(),
-                    It.IsAny<string>()));
+                    It.IsAny<string[]>()));
         }
 
         [Test]
@@ -108,5 +114,7 @@ namespace SnakeGame.Controller.Tests
 
             Mock.Get(fakeLogic).VerifyGet(logic => logic.Score, Times.Once);
         }
+
+        #endregion
     }
 }

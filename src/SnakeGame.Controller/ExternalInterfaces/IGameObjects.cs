@@ -5,7 +5,7 @@ namespace SnakeGame.Controller.ExternalInterfaces
 {
     public interface IGameObjects
     {
-        public IEnumerable<PositivePoint> HeroLocation { get; }
-        public IEnumerable<PositivePoint> FoodLocation { get; }
+        IEnumerable<PositivePoint> HeroLocation { get; }
+        IEnumerable<PositivePoint> FoodLocation { get; }
     }
 }

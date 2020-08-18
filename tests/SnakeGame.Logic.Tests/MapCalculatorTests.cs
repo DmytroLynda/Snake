@@ -8,16 +8,16 @@ using System.Collections.Generic;
 namespace SnakeGame.Logic.Tests
 {
     [TestFixture]
-    public class MapCalculatorTests
+    internal class MapCalculatorTests
     {
-        private IMapConfiguration mapConfiguragion;
+        private IMapConfiguration mapConfiguration;
         private PositivePoint pointOnCenter;
         private MapCalculator mapCalculator;
 
         [OneTimeSetUp]
         public void Initialize()
         {
-            mapConfiguragion = Mock.Of<IMapConfiguration>(conf => 
+            mapConfiguration = Mock.Of<IMapConfiguration>(conf => 
                 conf.Height == 3 &&
                 conf.Width == 3);
 
@@ -26,11 +26,13 @@ namespace SnakeGame.Logic.Tests
         }
 
 
+        #region MovePoint tests
+
         [Test]
         [TestCaseSource(nameof(MoveCasesSource))]
         public void MovePoint_ReturnsMovedPoint(Direction direction, PositivePoint expectedPoint)
         {
-            PositivePoint result = mapCalculator.MovePoint(pointOnCenter, mapConfiguragion, direction);
+            PositivePoint result = mapCalculator.MovePoint(pointOnCenter, mapConfiguration, direction);
 
             TestContext.WriteLine($"Result = {result}, Expected = {expectedPoint}");
             Assert.That(result, Is.EqualTo(expectedPoint));
@@ -51,8 +53,8 @@ namespace SnakeGame.Logic.Tests
         [TestCaseSource(nameof(MoveThroughBorderCasesSource))]
         public void MovePoint_ThroughBorder_ReturnsPointOnTheOppositeSide(Direction direction, PositivePoint expectedPoint)
         {
-            PositivePoint stepToBorder = mapCalculator.MovePoint(pointOnCenter, mapConfiguragion, direction);
-            PositivePoint afterPassingThroughBorder = mapCalculator.MovePoint(stepToBorder, mapConfiguragion, direction);
+            PositivePoint stepToBorder = mapCalculator.MovePoint(pointOnCenter, mapConfiguration, direction);
+            PositivePoint afterPassingThroughBorder = mapCalculator.MovePoint(stepToBorder, mapConfiguration, direction);
 
             Assert.That(afterPassingThroughBorder, Is.EqualTo(expectedPoint));
         }
@@ -74,6 +76,10 @@ namespace SnakeGame.Logic.Tests
 
             Assert.Throws<ArgumentNullException>(Act);
         }
+
+        #endregion
+
+        #region CalculateHeadDirection tests
 
         [Test]
         [TestCase(1, 2, Direction.Up)]
@@ -109,6 +115,10 @@ namespace SnakeGame.Logic.Tests
             Assert.Throws<ArgumentException>(Act);
         }
 
+        #endregion
+
+        #region IsInMap tests
+
         [Test]
         [TestCase(0, 0)]
         [TestCase(1, 0)]
@@ -123,7 +133,7 @@ namespace SnakeGame.Logic.Tests
         {
             var point = new PositivePoint(xPoint, yPoint);
 
-            var actual = mapCalculator.IsInMap(point, mapConfiguragion);
+            var actual = mapCalculator.IsInMap(point, mapConfiguration);
 
             Assert.That(actual, Is.True);
         }
@@ -139,9 +149,11 @@ namespace SnakeGame.Logic.Tests
         {
             var point = new PositivePoint(xPoint, yPoint);
 
-            var actual = mapCalculator.IsInMap(point, mapConfiguragion);
+            var actual = mapCalculator.IsInMap(point, mapConfiguration);
 
             Assert.That(actual, Is.False);
         }
+
+        #endregion
     }
 }

@@ -1,40 +1,33 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
 using SnakeGame.Controller.Updaters.States;
-using SnakeGame.Helpers;
 
-[assembly: InternalsVisibleTo("SnakeGame")]
 [assembly: InternalsVisibleTo("SnakeGame.Controller.Tests")]
 
 namespace SnakeGame.Controller.Updaters
 {
-    internal class Updater : IUpdater
+    public class Updater : IUpdater
     {
         private ILogic GameLogic { get; }
         private IRenderer ViewRenderer { get; }
         private IUserInputListener Listener { get; }
-
-        private KeyType LastPressedKey { get; set; }
         private GameState GameState { get; }
 
+        private KeyType LastPressedKey { get; set; }
+        
         public Updater(ILogic gameLogic, IRenderer viewRenderer, IUserInputListener listener, GameState state)
         {
-            #region Checks for null
-            NullHandlingHelper.ExternalCheckForNull<ILogic>(gameLogic);
-            NullHandlingHelper.ExternalCheckForNull<IRenderer>(viewRenderer);
-            NullHandlingHelper.ExternalCheckForNull<IUserInputListener>(listener);
-            NullHandlingHelper.ExternalCheckForNull<GameState>(state);
-            #endregion
-
-            GameLogic = gameLogic;
-            ViewRenderer = viewRenderer;
-            Listener = listener;
+            GameLogic = gameLogic ?? throw new ArgumentNullException(nameof(gameLogic));
+            ViewRenderer = viewRenderer ?? throw new ArgumentNullException(nameof(viewRenderer));
+            Listener = listener ?? throw new ArgumentNullException(nameof(listener));
+            GameState = state ?? throw new ArgumentNullException(nameof(state));
 
             Listener.KeyWasPress += ProcessKeystroke;
             Listener.BeginListenInput();
 
-            GameState = state;
+            
             LastPressedKey = KeyType.Unknown;
         }
 
@@ -46,8 +39,10 @@ namespace SnakeGame.Controller.Updaters
         private void ProcessKeystroke(object sender, KeyTypeEventArgs eventArgs)
         {
             #region Check for null
-            NullHandlingHelper.ExternalCheckForNull<object>(sender);
-            NullHandlingHelper.ExternalCheckForNull<KeyTypeEventArgs>(eventArgs);
+
+            if (sender is null) throw new ArgumentNullException(nameof(sender));
+            if (eventArgs is null) throw new ArgumentNullException(nameof(eventArgs));
+
             #endregion
 
             LastPressedKey = eventArgs.Key;

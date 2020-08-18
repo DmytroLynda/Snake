@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
 using SnakeGame.Logic.ExternalInterfaces;
@@ -11,7 +10,7 @@ using System.Linq;
 namespace SnakeGame.Logic.Tests
 {
     [TestFixture]
-    public class SnakeTests
+    internal class SnakeTests
     {
         private IMapConfiguration fakeConfiguration;
         private IMapCalculator fakeCalculator;

@@ -7,8 +7,10 @@ using SnakeGame.Controller.Resources;
 namespace SnakeGame.Controller.Tests
 {
     [TestFixture]
-    public class PositivePointTests
+    internal class PositivePointTests
     {
+        #region Constructor tests
+
         [Test]
         [TestCase(0, -1)]
         [TestCase(-1,0)]
@@ -31,5 +33,7 @@ namespace SnakeGame.Controller.Tests
 
             Assert.DoesNotThrow(Act);
         }
+
+        #endregion
     }
 }

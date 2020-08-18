@@ -1,6 +1,5 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using SnakeGame.Logic.ExternalInterfaces;
 using System;
 using System.Collections.Generic;
@@ -24,9 +23,9 @@ namespace SnakeGame.Logic
         {
             #region Check values and for null
 
-            NullHandlingHelper.ExternalCheckForNull<IMapConfiguration>(mapConfiguration);
-            NullHandlingHelper.ExternalCheckForNull<IBodyShape>(initialBodyShape);
-            NullHandlingHelper.ExternalCheckForNull<IMapCalculator>(mapCalculator);
+            if (mapConfiguration is null) throw new ArgumentNullException(nameof(mapConfiguration));
+            if (mapCalculator is null) throw new ArgumentNullException(nameof(mapCalculator));
+            if (initialBodyShape is null) throw new ArgumentNullException(nameof(initialBodyShape));
 
             if (!mapCalculator.IsInMap(initialBodyShape.Shape, mapConfiguration))
             {
@@ -52,11 +51,7 @@ namespace SnakeGame.Logic
 
         public bool CanEat(IFruit fruit)
         {
-            #region Check for null
-
             if (fruit is null) return false;
-
-            #endregion
 
             var snakeHead = bodyShape.GetHead();
 

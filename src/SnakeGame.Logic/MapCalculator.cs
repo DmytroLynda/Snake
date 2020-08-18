@@ -1,6 +1,5 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using SnakeGame.Logic.ExternalInterfaces;
 using System;
 using System.Collections.Generic;
@@ -17,8 +16,11 @@ namespace SnakeGame.Logic
         public PositivePoint MovePoint(PositivePoint point, IMapConfiguration map, Direction direction)
         {
             #region Check for null
-            NullHandlingHelper.ExternalCheckForNull<IMapConfiguration>(map);
+
+            if (map is null) throw new ArgumentNullException(nameof(map));
+
             #endregion
+
             Point movedPoint = MovePoint(direction, point);
 
             PositivePoint result = FixGoingOutOfBounds(movedPoint, map);
@@ -54,6 +56,12 @@ namespace SnakeGame.Logic
 
         public bool IsInMap(PositivePoint point, IMapConfiguration configuration)
         {
+            #region Check for null
+
+            if (configuration is null) throw new ArgumentNullException(nameof(configuration));
+
+            #endregion
+
             return point.X < configuration.Width &&
                    point.Y < configuration.Height &&
                    point.X >= 0 &&
@@ -62,6 +70,13 @@ namespace SnakeGame.Logic
 
         public bool IsInMap(IEnumerable<PositivePoint> points, IMapConfiguration configuration)
         {
+            #region Check for null
+
+            if (points is null) throw new ArgumentNullException(nameof(points));
+            if (configuration is null) throw new ArgumentNullException(nameof(configuration));
+
+            #endregion
+
             return points.Any(point => IsInMap(point, configuration));
         }
 
@@ -69,7 +84,9 @@ namespace SnakeGame.Logic
         private static PositivePoint FixGoingOutOfBounds(Point processedPoint, IMapConfiguration map)
         {
             #region Check for null
-            NullHandlingHelper.InternalCheckForNull<IMapConfiguration>(map);
+
+            if (map is null) throw new ArgumentNullException(nameof(map));
+
             #endregion
 
             int resultX = processedPoint.X;

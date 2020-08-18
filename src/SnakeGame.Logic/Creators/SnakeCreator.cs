@@ -1,7 +1,6 @@
 ﻿using System;
 using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using SnakeGame.Logic.ExternalInterfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +9,13 @@ namespace SnakeGame.Logic.Creators
 {
     public class SnakeCreator : ISnakeCreator
     {
-        protected readonly IMapConfiguration mapConfiguration;
-        protected readonly IMapCalculator mapCalculator;
+        protected readonly IMapConfiguration MapConfiguration;
+        protected readonly IMapCalculator MapCalculator;
 
         public SnakeCreator(IMapConfiguration mapConfiguration, IMapCalculator mapCalculator)
         {
-            #region Check for null
-
-            NullHandlingHelper.ExternalCheckForNull<IMapConfiguration>(mapConfiguration);
-            NullHandlingHelper.ExternalCheckForNull<IMapCalculator>(mapCalculator);
-
-            #endregion
-
-            this.mapConfiguration = mapConfiguration;
-            this.mapCalculator = mapCalculator;
+            this.MapConfiguration = mapConfiguration ?? throw new ArgumentNullException(nameof(mapConfiguration));
+            this.MapCalculator = mapCalculator ?? throw new ArgumentNullException(nameof(mapCalculator));
         }
 
         /// <summary>
@@ -38,7 +30,7 @@ namespace SnakeGame.Logic.Creators
             location.Add(firstPosition);
 
             const int maxSnakeLength = 4;
-            int snakeLength = maxSnakeLength > mapConfiguration.Width ? mapConfiguration.Width : maxSnakeLength;
+            int snakeLength = maxSnakeLength > MapConfiguration.Width ? MapConfiguration.Width : maxSnakeLength;
             for (int count = 0; count < snakeLength - 1; count++)
             {
                 int nextX = location.Last().X + 1;
@@ -48,9 +40,9 @@ namespace SnakeGame.Logic.Creators
                 location.Add(nextPosition);
             }
 
-            var shape = new BodyShape(location, mapConfiguration.Height, mapConfiguration.Width);
+            var shape = new BodyShape(location, MapConfiguration.Height, MapConfiguration.Width);
 
-            return new Snake(mapConfiguration, mapCalculator, shape);
+            return new Snake(MapConfiguration, MapCalculator, shape);
         }
     }
 }

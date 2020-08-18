@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Runtime.CompilerServices;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 
 [assembly: InternalsVisibleTo("SnakeGame")]
 
@@ -17,20 +15,9 @@ namespace SnakeGame.View.Frames
 
         public FrameObject(IEnumerable<PositivePoint> location, char presentationSymbol, ConsoleColor color)
         {
-            #region Checks for null
-            NullHandlingHelper.ExternalCheckForNull<IEnumerable<Point>>(location);
-            #endregion
-
-            Location = location;
+            Location = location ?? throw new ArgumentNullException(nameof(location));
             PresentationSymbol = presentationSymbol;
             Color = color;
         }
-
-        public FrameObject(PositivePoint location, char presentationSymbol, ConsoleColor color)
-            : this(
-                  new List<PositivePoint> { location },
-                  presentationSymbol,
-                  color)
-        { }
     }
 }

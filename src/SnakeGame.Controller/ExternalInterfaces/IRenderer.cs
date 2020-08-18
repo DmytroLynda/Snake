@@ -2,6 +2,6 @@
 {
     public interface IRenderer
     {
-        void DrawNewFrame(IGameObjects gameObjects, string title, string centerText);
+        void DrawNewFrame(IGameObjects gameObjects, string title, string[] centerText);
     }
 }

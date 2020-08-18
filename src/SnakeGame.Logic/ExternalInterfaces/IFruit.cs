@@ -5,6 +5,6 @@ namespace SnakeGame.Logic.ExternalInterfaces
 {
     public interface IFruit
     {
-        public IEnumerable<PositivePoint> GetLocation();
+        IEnumerable<PositivePoint> GetLocation();
     }
 }

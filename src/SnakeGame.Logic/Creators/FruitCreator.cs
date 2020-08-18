@@ -1,6 +1,5 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
 using SnakeGame.Logic.ExternalInterfaces;
 using System;
 using System.Collections.Generic;
@@ -10,17 +9,11 @@ namespace SnakeGame.Logic.Creators
 {
     public class FruitCreator : IFruitCreator
     {
-        protected readonly IMapConfiguration mapConfiguration;
+        protected readonly IMapConfiguration MapConfiguration;
 
         public FruitCreator(IMapConfiguration mapConfiguration)
         {
-            #region Check for null
-
-            NullHandlingHelper.ExternalCheckForNull<IMapConfiguration>(mapConfiguration);
-
-            #endregion
-
-            this.mapConfiguration = mapConfiguration;
+            MapConfiguration = mapConfiguration ?? throw new ArgumentNullException(nameof(mapConfiguration));
         }
 
         public virtual IFruit Create(IEnumerable<PositivePoint> except)
@@ -31,8 +24,8 @@ namespace SnakeGame.Logic.Creators
             PositivePoint randomPosition;
             do
             {
-                int randomX = random.Next(0, mapConfiguration.Width - 1);
-                int randomY = random.Next(0, mapConfiguration.Height - 1);
+                int randomX = random.Next(0, MapConfiguration.Width - 1);
+                int randomY = random.Next(0, MapConfiguration.Height - 1);
 
                 randomPosition = new PositivePoint(randomX, randomY);
             } while (except.Contains(randomPosition));

@@ -1,7 +1,5 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
-using SnakeGame.Helpers;
-using SnakeGame.Logic.Creators;
 using SnakeGame.Logic.Exceptions;
 using SnakeGame.Logic.ExternalInterfaces;
 using System;
@@ -25,13 +23,8 @@ namespace SnakeGame.Logic
 
         public GameLogic(IFruitCreator fruitCreator, ISnakeCreator snakeCreator)
         {
-            #region Checks values for null
-            NullHandlingHelper.ExternalCheckForNull<IFruitCreator>(fruitCreator);
-            NullHandlingHelper.ExternalCheckForNull<ISnakeCreator>(snakeCreator);
-            #endregion
-
-            this.fruitCreator = fruitCreator;
-            this.snakeCreator = snakeCreator;
+            this.fruitCreator = fruitCreator ?? throw new ArgumentNullException(nameof(fruitCreator));
+            this.snakeCreator = snakeCreator ?? throw new ArgumentNullException(nameof(snakeCreator));
 
             NewGame();
         }

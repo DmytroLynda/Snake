@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SnakeGame.ConsoleInputListener\SnakeGame.Input.csproj" />
     <ProjectReference Include="..\SnakeGame.Controller\SnakeGame.Controller.csproj" />
-    <ProjectReference Include="..\SnakeGame.Helpers\SnakeGame.Helpers.csproj" />
     <ProjectReference Include="..\SnakeGame.Logic\SnakeGame.Logic.csproj" />
     <ProjectReference Include="..\SnakeGame.View\SnakeGame.View.csproj" />
   </ItemGroup>
