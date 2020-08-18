@@ -26,6 +26,8 @@ namespace SnakeGame.Logic.Tests
         }
 
 
+        #region MovePoint tests
+
         [Test]
         [TestCaseSource(nameof(MoveCasesSource))]
         public void MovePoint_ReturnsMovedPoint(Direction direction, PositivePoint expectedPoint)
@@ -75,6 +77,10 @@ namespace SnakeGame.Logic.Tests
             Assert.Throws<ArgumentNullException>(Act);
         }
 
+        #endregion
+
+        #region CalculateHeadDirection tests
+
         [Test]
         [TestCase(1, 2, Direction.Up)]
         [TestCase(2, 1, Direction.Left)]
@@ -108,6 +114,10 @@ namespace SnakeGame.Logic.Tests
 
             Assert.Throws<ArgumentException>(Act);
         }
+
+        #endregion
+
+        #region IsInMap tests
 
         [Test]
         [TestCase(0, 0)]
@@ -143,5 +153,7 @@ namespace SnakeGame.Logic.Tests
 
             Assert.That(actual, Is.False);
         }
+
+        #endregion
     }
 }
