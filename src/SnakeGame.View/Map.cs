@@ -29,6 +29,8 @@ namespace SnakeGame.View
             BorderColor = borderColor;
             BorderSymbol = borderSymbol;
             LastText = Array.Empty<string>();
+
+            Console.CursorVisible = false;
         }
 
         public void Clear(IEnumerable<IFrameObject> clearedFrame)
