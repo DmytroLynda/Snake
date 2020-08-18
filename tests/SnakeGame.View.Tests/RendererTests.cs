@@ -25,6 +25,8 @@ namespace SnakeGame.View.Tests
             renderer = new Renderer(fakeMap, fakePreparer);
         }
 
+        #region Constructor tests
+
         [Test]
         [TestCaseSource(nameof(ConstructorNullCases))]
         public void Renderer_NullParameters_ThrowsArgumentNull(IMap map, IFramePreparer preparer)
@@ -53,6 +55,10 @@ namespace SnakeGame.View.Tests
             Mock.Get(fakeMap).Verify(map => map.DrawMap(), Times.Once);
         }
 
+        #endregion
+
+        #region DrawNewFrame tests
+
         [Test]
         public void DrawNewFrame_AlwaysClearOldFrame()
         {
@@ -62,7 +68,7 @@ namespace SnakeGame.View.Tests
         }
 
         [Test]
-        public void DrawNewFrame_ClearTheLastFrame()
+        public void DrawNewFrame_ClearsTheLastFrame()
         {
             var lastFrame = Mock.Of<IEnumerable<IFrameObject>>(frame => frame.GetEnumerator() == Enumerable.Empty<IFrameObject>());
             Mock.Get(fakePreparer)
@@ -81,7 +87,7 @@ namespace SnakeGame.View.Tests
             renderer.DrawNewFrame(null, It.IsAny<string>(), It.IsAny<string>());
 
             Mock.Get(fakeMap).Verify(map =>
-                map.DrawPointOn(It.IsAny<PositivePoint>(), It.IsAny<char>(), It.IsAny<ConsoleColor>()),
+                    map.DrawPointOn(It.IsAny<PositivePoint>(), It.IsAny<char>(), It.IsAny<ConsoleColor>()),
                 Times.Never);
         }
 
@@ -139,10 +145,10 @@ namespace SnakeGame.View.Tests
             renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string>());
 
             Mock.Get(fakeMap).Verify(map => 
-                map.DrawPointOn(
-                    It.IsAny<PositivePoint>(),
-                    It.IsAny<char>(),
-                    expectedColor),
+                    map.DrawPointOn(
+                        It.IsAny<PositivePoint>(),
+                        It.IsAny<char>(),
+                        expectedColor),
                 Times.Once);
         }
 
@@ -162,10 +168,10 @@ namespace SnakeGame.View.Tests
             renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string>());
 
             Mock.Get(fakeMap).Verify(map => 
-                map.DrawPointOn(
-                    It.IsAny<PositivePoint>(),
-                    expectedSymbol,
-                    It.IsAny<ConsoleColor>()),
+                    map.DrawPointOn(
+                        It.IsAny<PositivePoint>(),
+                        expectedSymbol,
+                        It.IsAny<ConsoleColor>()),
                 Times.Once);
         }
 
@@ -189,5 +195,7 @@ namespace SnakeGame.View.Tests
 
             Mock.Get(fakeMap).Verify(map => map.DrawText(expectedLine), Times.Once);
         }
+
+        #endregion
     }
 }

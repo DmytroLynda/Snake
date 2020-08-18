@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
 using SnakeGame.Logic.ExternalInterfaces;
