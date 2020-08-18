@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace SnakeGame.Controller.Resources
 {
-    public readonly struct PositivePoint
+    public readonly struct PositivePoint : IEquatable<PositivePoint>
     {
         private readonly Point point;
 

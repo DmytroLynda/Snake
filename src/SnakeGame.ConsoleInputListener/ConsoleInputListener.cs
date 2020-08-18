@@ -28,7 +28,7 @@ namespace SnakeGame.Input
         {
             IsWorking = false;
         }
-        private async void InitializeListenAsync()
+        private async Task InitializeListenAsync()
         {
             await Task.Run(Listen);
         }

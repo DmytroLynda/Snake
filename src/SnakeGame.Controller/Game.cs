@@ -55,7 +55,7 @@ namespace SnakeGame.Controller
             act.Invoke();
 
             int remainingDelay = CalculateRemainingDelay(delay, sleepTimer, startProcessing);
-            //Task.Delay(remainingDelay);
+            
             Thread.Sleep(remainingDelay);
 
             sleepTimer.Stop();
