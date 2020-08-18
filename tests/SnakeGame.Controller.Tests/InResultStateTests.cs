@@ -23,6 +23,8 @@ namespace SnakeGame.Controller.Tests
             state = new InResultState();
         }
 
+        #region Update tests
+
         [Test]
         [TestCaseSource(nameof(UpdateNullCases))]
         public void Update_NullParameters_ThrowsArgumentNull(ILogic logic, IRenderer renderer)
@@ -76,5 +78,7 @@ namespace SnakeGame.Controller.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        #endregion
     }
 }
