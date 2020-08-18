@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using SnakeGame.View.Extensions;
 using SnakeGame.View.Frames;
 
@@ -28,8 +29,6 @@ namespace SnakeGame.View
             BorderColor = borderColor;
             BorderSymbol = borderSymbol;
             LastText = Array.Empty<string>();
-
-            Console.CursorVisible = false;
         }
 
         public void Clear(IEnumerable<IFrameObject> clearedFrame)
@@ -151,9 +150,18 @@ namespace SnakeGame.View
             LastText = text;
         }
 
+        public void Initialize(string title)
+        {
+            Console.CursorVisible = false;
+
+            Console.WindowHeight = MapConfiguration.Height + TopIndent + BorderWidth + 1;
+            Console.WindowWidth = MapConfiguration.Width + LeftIndent + BorderWidth + 1;
+            Console.Title = "Snake";
+        }
+
         private int CalculateFirstLine(string[] lines)
         {
-            #region Check for null
+            #region MyRegion
 
             Debug.Assert(lines != null, nameof(lines) + " != null");
 
