@@ -23,6 +23,8 @@ namespace SnakeGame.Controller.Tests
             state = new InGameState();
         }
 
+        #region Constructor tests
+
         [Test]
         [TestCaseSource(nameof(UpdateNullCases))]
         public void InGameState_UpdateWithNullParameters_ThrowsArgumentNull(ILogic logic, IRenderer renderer)
@@ -42,6 +44,10 @@ namespace SnakeGame.Controller.Tests
                 yield return new TestCaseData(Mock.Of<ILogic>(), null);
             }
         }
+
+        #endregion
+
+        #region Update tests
 
         [Test]
         public void Update_GameIsNotOver_ReturnsCurrentState()
@@ -108,5 +114,7 @@ namespace SnakeGame.Controller.Tests
 
             Mock.Get(fakeLogic).VerifyGet(logic => logic.Score, Times.Once);
         }
+
+        #endregion
     }
 }
