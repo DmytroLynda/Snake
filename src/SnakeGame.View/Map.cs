@@ -119,19 +119,17 @@ namespace SnakeGame.View
             DrawCenteredLine(line, overMapLineNumber);
         }
 
-        public void DrawText(string text)
+        public void DrawText(string[] text)
         {
             #region Check for null
 
-            NullHandlingHelper.ExternalCheckForNull<string>(text);
+            NullHandlingHelper.ExternalCheckForNull<string[]>(text);
 
             #endregion
 
             ClearLastText();
 
-            string[] lines = text.Split('\n');
-
-            if (lines.Length > MapConfiguration.Height)
+            if (text.Length > MapConfiguration.Height)
             {
                 var message = $"Too many lines in the {nameof(text)} - " +
                               $"\n{text}," +
@@ -141,21 +139,23 @@ namespace SnakeGame.View
                 throw new ArgumentException(message);
             }
 
-            var firstLineMustBeOn = CalculateFirstLine(lines);
+            var firstLineMustBeOn = CalculateFirstLine(text);
 
             int lineNumber = firstLineMustBeOn;
-            foreach (string line in lines)
+            foreach (string line in text)
             {
                 DrawCenteredLine(line, lineNumber);
 
                 lineNumber++;
             }
 
-            LastText = lines;
+            LastText = text;
         }
 
         private int CalculateFirstLine(string[] lines)
         {
+            Debug.Assert(lines != null, nameof(lines) + " != null");
+
             int centerLineNumber = (MapConfiguration.Height + BorderWidth * 2) / 2 + TopIndent;
             int firstLineMustBeOn = centerLineNumber - (lines.Length / 2);
             return firstLineMustBeOn;

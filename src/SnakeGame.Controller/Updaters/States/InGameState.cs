@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using SnakeGame.Controller.ExternalInterfaces;
@@ -27,7 +28,7 @@ namespace SnakeGame.Controller.Updaters.States
                 var gameObjects = gameLogic.ProcessNextGameStep(lastPressedKey);
 
                 var scoreMessage = "Score: " + gameLogic.Score.ToString();
-                viewRenderer.DrawNewFrame(gameObjects, scoreMessage, string.Empty);
+                viewRenderer.DrawNewFrame(gameObjects, scoreMessage, Array.Empty<string>());
 
                 return this;
             }

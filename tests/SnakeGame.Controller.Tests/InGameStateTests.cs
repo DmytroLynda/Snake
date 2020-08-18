@@ -100,7 +100,7 @@ namespace SnakeGame.Controller.Tests
                 renderer.DrawNewFrame(
                     expectedGameObjects,
                     It.IsAny<string>(),
-                    It.IsAny<string>()));
+                    It.IsAny<string[]>()));
         }
 
         [Test]

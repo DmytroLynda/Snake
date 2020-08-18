@@ -51,7 +51,12 @@ namespace SnakeGame.Controller.Tests
 
             state.Update(fakeLogic, fakeRenderer, default);
 
-            Mock.Get(fakeLogic).VerifyGet(logic => logic.Score, Times.Once);
+            Mock.Get(fakeRenderer).Verify(renderer => 
+                renderer.DrawNewFrame(
+                    It.IsAny<IGameObjects>(), 
+                    expectedScore.ToString(), 
+                    It.IsAny<string[]>()),
+                Times.Once);
         }
 
         [Test]

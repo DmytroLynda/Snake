@@ -16,8 +16,6 @@ namespace SnakeGame.Logic
         
         public IEnumerable<PositivePoint> HeroLocation { get; }
 
-        public IEnumerable<PositivePoint> AllObjects { get; }
-
         public GameObjects(IEnumerable<PositivePoint> hero, IEnumerable<PositivePoint> food)
         {
             #region Checks for null
@@ -27,8 +25,6 @@ namespace SnakeGame.Logic
 
             FoodLocation = food;
             HeroLocation = hero;
-
-            AllObjects = HeroLocation.Concat(FoodLocation);
         }
     }
 }

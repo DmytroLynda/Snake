@@ -62,7 +62,7 @@ namespace SnakeGame.View.Tests
         [Test]
         public void DrawNewFrame_AlwaysClearOldFrame()
         {
-            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), It.IsAny<string>(), It.IsAny<string>());
+            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), It.IsAny<string>(), It.IsAny<string[]>());
 
             Mock.Get(fakeMap).Verify(map => map.Clear(It.IsAny<IEnumerable<IFrameObject>>()), Times.Once);
         }
@@ -74,9 +74,9 @@ namespace SnakeGame.View.Tests
             Mock.Get(fakePreparer)
                 .Setup(preparer => preparer.PrepareFrame(It.IsAny<IGameObjects>()))
                 .Returns(lastFrame);
-            renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string>());
+            renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string[]>());
 
-            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), It.IsAny<string>(), It.IsAny<string>());
+            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), It.IsAny<string>(), It.IsAny<string[]>());
 
             Mock.Get(fakeMap).Verify(map => map.Clear(lastFrame), Times.Once);
         }
@@ -84,11 +84,20 @@ namespace SnakeGame.View.Tests
         [Test]
         public void DrawNewFrame_NullGameObjects_DoesNotDrawObjects()
         {
-            renderer.DrawNewFrame(null, It.IsAny<string>(), It.IsAny<string>());
+            renderer.DrawNewFrame(null, It.IsAny<string>(), It.IsAny<string[]>());
 
             Mock.Get(fakeMap).Verify(map =>
                     map.DrawPointOn(It.IsAny<PositivePoint>(), It.IsAny<char>(), It.IsAny<ConsoleColor>()),
                 Times.Never);
+        }
+
+        [Test]
+        public void DrawNewFrame_NullText_DrawsEmptyText()
+        {
+            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), It.IsAny<string>(), null);
+
+            Mock.Get(fakeMap).Verify(map =>
+                map.DrawText(Array.Empty<string>()));
         }
 
         [Test]
@@ -119,7 +128,7 @@ namespace SnakeGame.View.Tests
                 .Returns(frameObjects);
 
             //Act
-            renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string>());
+            renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string[]>());
 
             //Assert
             Mock.Get(fakeMap).Verify(map =>
@@ -142,7 +151,7 @@ namespace SnakeGame.View.Tests
                         frameObject.Location == new List<PositivePoint>{It.IsAny<PositivePoint>()})
                 });
 
-            renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string>());
+            renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string[]>());
 
             Mock.Get(fakeMap).Verify(map => 
                     map.DrawPointOn(
@@ -165,7 +174,7 @@ namespace SnakeGame.View.Tests
                         frameObject.Location == new List<PositivePoint>{It.IsAny<PositivePoint>()})
                 });
 
-            renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string>());
+            renderer.DrawNewFrame(Mock.Of<IGameObjects>(), It.IsAny<string>(), It.IsAny<string[]>());
 
             Mock.Get(fakeMap).Verify(map => 
                     map.DrawPointOn(
@@ -181,19 +190,19 @@ namespace SnakeGame.View.Tests
         [TestCase("SomeValue", "SomeValue")]
         public void DrawNewFrame_PassTitle_DrawsTitle(string passedTitle, string expectedTitle)
         {
-            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), passedTitle, It.IsAny<string>());
+            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), passedTitle, It.IsAny<string[]>());
 
             Mock.Get(fakeMap).Verify(map => map.DrawLineOverMap(expectedTitle), Times.Once);
         }
 
         [Test]
-        [TestCase(null, "")]
-        [TestCase("SomeLine", "SomeLine")]
-        public void DrawNewFrame_PassLine_DrawsLine(string passedLine, string expectedLine)
+        public void DrawNewFrame_PassText_DrawsText()
         {
-            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), It.IsAny<string>(), passedLine);
+            string[] text = {"text1", "text2", "text3"};
 
-            Mock.Get(fakeMap).Verify(map => map.DrawText(expectedLine), Times.Once);
+            renderer.DrawNewFrame(It.IsAny<IGameObjects>(), It.IsAny<string>(), text);
+
+            Mock.Get(fakeMap).Verify(map => map.DrawText(text), Times.Once);
         }
 
         #endregion

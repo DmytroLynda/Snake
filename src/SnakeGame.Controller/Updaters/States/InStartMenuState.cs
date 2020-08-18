@@ -20,9 +20,12 @@ namespace SnakeGame.Controller.Updaters.States
 
             if (!startInfoWasRender)
             {
-                string greeting = "WELCOME TO\nTHE SNAKE GAME";
-                string helpMessage = "PRESS ENTER";
-                string message = $"{greeting}\n{helpMessage}";
+                string[] message =
+                {
+                    "WELCOME TO",
+                    "THE SNAKE GAME",
+                    "PRESS ENTER"
+                };
 
                 viewRenderer.DrawNewFrame(new EmptyGameObjects(), string.Empty, message);
 
