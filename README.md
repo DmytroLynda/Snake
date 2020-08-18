@@ -6,7 +6,7 @@ For playing in the game you should [download](https://github.com/DmytroLynda/Sna
 or clone the repository and start the solution from the `SnakeGame` project.
 
 ## Project goals and results
-The goal of this project was creating the whole application from the beginning to the end. I wanted to apply the principles of creating clean code, achieving modularity of components and covering them with tests. The result after designing the application was the practical ability to create small applications on the .Net platform, using the principles of OOP, S.O.L.I.D., CI, DRY and some design patterns. Almost all the logic of the program was covered by modular tests (Except for classes that interact with static methods of the console)
+The goal of this project was creating the whole application from the beginning to the end. I wanted to apply the principles of creating clean code, achieving modularity of components and covering them with tests. The result after designing the application was the practical ability to create small applications on the .Net platform, using the principles of OOP, S.O.L.I.D., CI, DRY and some design patterns. Almost the whole logic of the program was covered by modular tests (Except for classes that interact with static methods of the console)
 
 ## Techonogies
 - С#
