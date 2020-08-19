@@ -29,7 +29,7 @@ namespace SnakeGame.Logic.Creators
             var firstPosition = new PositivePoint(0, 0);
             location.Add(firstPosition);
 
-            const int maxSnakeLength = 4;
+            const int maxSnakeLength = 150;
             int snakeLength = maxSnakeLength > MapConfiguration.Width ? MapConfiguration.Width : maxSnakeLength;
             for (int count = 0; count < snakeLength - 1; count++)
             {

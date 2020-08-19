@@ -22,7 +22,7 @@ namespace SnakeGame
             Bind<IMapConfiguration>()
                 .To<MapConfiguration>()
                 .WithConstructorArgument("height", 11)
-                .WithConstructorArgument("width", 20);
+                .WithConstructorArgument("width", 40);
             Bind<IMapCalculator>().To<MapCalculator>();
             Bind<IFruitCreator>().To<FruitCreator>();
             Bind<ISnakeCreator>().To<SnakeCreator>();
