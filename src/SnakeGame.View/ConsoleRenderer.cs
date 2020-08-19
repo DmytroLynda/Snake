@@ -4,6 +4,7 @@ using SnakeGame.View.ExternalInterfaces;
 using SnakeGame.View.Frames;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SnakeGame.View
 {
@@ -22,6 +23,11 @@ namespace SnakeGame.View
             LastFrame = new List<IFrameObject>();
 
             map.DrawMap();
+        }
+
+        public Task DrawNewFrameAsync(IGameObjects gameObjects, string title, string[] centerText)
+        {
+            return Task.Run(() => DrawNewFrame(gameObjects, title, centerText));
         }
 
         public void DrawNewFrame(IGameObjects gameObjects, string title, string[] centerText)

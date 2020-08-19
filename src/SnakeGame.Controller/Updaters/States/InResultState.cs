@@ -31,7 +31,7 @@ namespace SnakeGame.Controller.Updaters.States
                     "TO START AGAIN"
                 };
 
-                viewRenderer.DrawNewFrame(new EmptyGameObjects(), resultScore, message);
+                viewRenderer.DrawNewFrameAsync(new EmptyGameObjects(), resultScore, message);
 
                 ResultWasRender = true;
             }

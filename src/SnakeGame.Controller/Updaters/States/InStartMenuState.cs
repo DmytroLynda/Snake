@@ -29,7 +29,7 @@ namespace SnakeGame.Controller.Updaters.States
                     "PRESS ENTER"
                 };
 
-                viewRenderer.DrawNewFrame(new EmptyGameObjects(), string.Empty, message);
+                viewRenderer.DrawNewFrameAsync(new EmptyGameObjects(), string.Empty, message);
 
                 startInfoWasRender = true;
             }

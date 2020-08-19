@@ -27,7 +27,7 @@ namespace SnakeGame.Controller.Updaters.States
                 var gameObjects = gameLogic.ProcessNextGameStep(lastPressedKey);
 
                 var scoreMessage = "Score: " + gameLogic.Score.ToString();
-                viewRenderer.DrawNewFrame(gameObjects, scoreMessage, Array.Empty<string>());
+                viewRenderer.DrawNewFrameAsync(gameObjects, scoreMessage, Array.Empty<string>());
 
                 return this;
             }
