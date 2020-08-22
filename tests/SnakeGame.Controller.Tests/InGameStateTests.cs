@@ -97,7 +97,7 @@ namespace SnakeGame.Controller.Tests
             state.Update(fakeLogic, fakeRenderer, default);
 
             Mock.Get(fakeRenderer).Verify(renderer =>
-                renderer.DrawNewFrame(
+                renderer.DrawNewFrameAsync(
                     expectedGameObjects,
                     It.IsAny<string>(),
                     It.IsAny<string[]>()));

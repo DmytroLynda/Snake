@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using SnakeGame.Controller.ExternalInterfaces;
@@ -52,9 +53,9 @@ namespace SnakeGame.Controller.Tests
             state.Update(fakeLogic, fakeRenderer, default);
 
             Mock.Get(fakeRenderer).Verify(renderer => 
-                renderer.DrawNewFrame(
+                renderer.DrawNewFrameAsync(
                     It.IsAny<IGameObjects>(), 
-                    expectedScore.ToString(), 
+                    It.Is<string>(s => s.Contains(expectedScore.ToString())), 
                     It.IsAny<string[]>()),
                 Times.Once);
         }
