@@ -1,13 +1,12 @@
 ﻿using SnakeGame.Controller.ExternalInterfaces;
 using SnakeGame.Controller.Resources;
+using SnakeGame.View.Extensions;
 using SnakeGame.View.ExternalInterfaces;
+using SnakeGame.View.Frames;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using SnakeGame.View.Extensions;
-using SnakeGame.View.Frames;
 
 namespace SnakeGame.View
 {
@@ -16,7 +15,7 @@ namespace SnakeGame.View
         private char BorderSymbol { get; }
         private ConsoleColor BorderColor { get; }
         private IMapConfiguration MapConfiguration { get; }
-        private string[] LastText {get; set;}
+        private string[] LastText { get; set; }
 
         private const int LeftIndent = 0;
         private const int TopIndent = 1;
@@ -52,36 +51,31 @@ namespace SnakeGame.View
             var lastColor = Console.ForegroundColor;
 
             Console.ForegroundColor = BorderColor;
-            try
+
+            for (int x = 0; x < MapConfiguration.Width + (BorderWidth * 2); x++)
             {
-                for (int x = 0; x < MapConfiguration.Width + (BorderWidth * 2); x++)
-                {
-                    Console.CursorLeft = x + LeftIndent;
-                    Console.CursorTop = TopIndent;
-                    Console.Write(BorderSymbol);
+                Console.CursorLeft = x + LeftIndent;
+                Console.CursorTop = TopIndent;
+                Console.Write(BorderSymbol);
 
-                    Console.CursorLeft = x + LeftIndent;
-                    Console.CursorTop = MapConfiguration.Height + TopIndent + BorderWidth;
-                    Console.Write(BorderSymbol);
+                Console.CursorLeft = x + LeftIndent;
+                Console.CursorTop = MapConfiguration.Height + TopIndent + BorderWidth;
+                Console.Write(BorderSymbol);
 
-                }
-
-                for (int y = 0; y < MapConfiguration.Height + (BorderWidth * 2); y++)
-                {
-                    Console.CursorLeft = LeftIndent;
-                    Console.CursorTop = y + TopIndent;
-                    Console.Write(BorderSymbol);
-
-                    Console.CursorLeft = MapConfiguration.Width + LeftIndent + BorderWidth;
-                    Console.CursorTop = y + TopIndent;
-                    Console.Write(BorderSymbol);
-                }
             }
-            catch(ArgumentOutOfRangeException){ }
-            finally
+
+            for (int y = 0; y < MapConfiguration.Height + (BorderWidth * 2); y++)
             {
-                Console.ForegroundColor = lastColor;
+                Console.CursorLeft = LeftIndent;
+                Console.CursorTop = y + TopIndent;
+                Console.Write(BorderSymbol);
+
+                Console.CursorLeft = MapConfiguration.Width + LeftIndent + BorderWidth;
+                Console.CursorTop = y + TopIndent;
+                Console.Write(BorderSymbol);
             }
+
+            Console.ForegroundColor = lastColor;
         }
 
         public void DrawPointOn(PositivePoint point, char presentationSymbol, ConsoleColor color)
@@ -89,17 +83,12 @@ namespace SnakeGame.View
             var lastColor = Console.ForegroundColor;
 
             Console.ForegroundColor = color;
-            try
-            {
-                Console.CursorTop = point.Y + TopIndent + BorderWidth;
-                Console.CursorLeft = point.X + LeftIndent + BorderWidth;
-                Console.Write(presentationSymbol);
-            }
-            catch (ArgumentOutOfRangeException) { }
-            finally
-            {
-                Console.ForegroundColor = lastColor;
-            }
+
+            Console.CursorTop = point.Y + TopIndent + BorderWidth;
+            Console.CursorLeft = point.X + LeftIndent + BorderWidth;
+            Console.Write(presentationSymbol);
+
+            Console.ForegroundColor = lastColor;
         }
 
         public void DrawLineOverMap(string line)
