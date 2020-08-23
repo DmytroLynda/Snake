@@ -6,7 +6,7 @@ namespace SnakeGame.Controller.Updaters.States
 {
     public class GameState
     {
-        private IState State { get; set; }
+        protected IState State { get; set; }
 
         public GameState(IState beginState)
         {

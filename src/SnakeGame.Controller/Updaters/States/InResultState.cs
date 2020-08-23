@@ -22,17 +22,16 @@ namespace SnakeGame.Controller.Updaters.States
 
             if (!ResultWasRender)
             {
-                string resultScore = gameLogic.Score.ToString();
+                string resultScore = "FINAL RESULT: " + gameLogic.Score;
 
                 string[] message =
                 {
-                    "FINAL RESULT: " + resultScore,
                     "THE GAME IS OVER!",
                     "PRESS ENTER",
                     "TO START AGAIN"
                 };
 
-                viewRenderer.DrawNewFrame(new EmptyGameObjects(), resultScore, message);
+                viewRenderer.DrawNewFrameAsync(new EmptyGameObjects(), resultScore, message);
 
                 ResultWasRender = true;
             }

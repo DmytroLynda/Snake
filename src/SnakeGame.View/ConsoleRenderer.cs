@@ -4,17 +4,18 @@ using SnakeGame.View.ExternalInterfaces;
 using SnakeGame.View.Frames;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SnakeGame.View
 {
-    public class Renderer : IRenderer
+    public class ConsoleRenderer : IRenderer
     {
         private IMap Map { get; }
         private IFramePreparer Preparer { get; }
 
         private IEnumerable<IFrameObject> LastFrame { get; set; }
 
-        public Renderer(IMap map, IFramePreparer preparer)
+        public ConsoleRenderer(IMap map, IFramePreparer preparer)
         {
             Map = map ?? throw new ArgumentNullException(nameof(map));
             Preparer = preparer ?? throw new ArgumentNullException(nameof(preparer));
@@ -22,6 +23,11 @@ namespace SnakeGame.View
             LastFrame = new List<IFrameObject>();
 
             map.DrawMap();
+        }
+
+        public Task DrawNewFrameAsync(IGameObjects gameObjects, string title, string[] centerText)
+        {
+            return Task.Run(() => DrawNewFrame(gameObjects, title, centerText));
         }
 
         public void DrawNewFrame(IGameObjects gameObjects, string title, string[] centerText)
