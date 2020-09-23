@@ -7,7 +7,6 @@ namespace SnakeGame
     public static class Program
     {
         private static Game _game;
-        
 
         private static void Initialize()
         {
@@ -22,8 +21,8 @@ namespace SnakeGame
 
         private static void Start()
         {
-            const int delayBetweenDelay = 200;
-            _game.Start(delayBetweenDelay);
+            const int delayBetweenUpdates = 200;
+            _game.Start(delayBetweenUpdates);
         }
 
         public static void Main()
