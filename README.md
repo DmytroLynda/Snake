@@ -25,7 +25,7 @@ Because the project unites all lower modules - it defines external interfaces th
 * **`SnakeGame.Logic`** - is the part of the solution that is responsible for handling everything related to the behavior of the game entities.
 
 ## More about:
-### `System.Controller`
+### `SnakeGame.Controller`
 
 The System.Controller uses **Game loop pattern**. 
 > A game loop runs continuously during gameplay. Each turn of the loop, it processes user input without blocking, updates the game state, and renders the game. It tracks the passage of time to control the rate of gameplay.
